@@ -1,0 +1,548 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Robothon 2.0</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* General Resets */
+        body, .container-fluid {
+            margin: 0;
+            padding: 0;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        .Header {
+            background-color: #c1e8fb;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 9999;
+            transition: background-color 0.3s ease, opacity 0.3s ease;
+            border-bottom: 3px solid #FFB524; /* Solid yellow bottom border */
+        }
+
+        
+
+        .Header .logo-heading {
+            display: flex;
+            align-items: center;
+        }
+
+        .Header img {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        #heading {
+            color: white;
+            font-size: 2rem;
+            margin: 0;
+            text-shadow: 0 0 3px #000, 0 0 5px #000, 2px 2px 4px #000;
+        }
+
+        .button3 {
+            background-color: #FFB524;
+            border: 2px solid #FFF;
+            color: white;
+            padding: 5px 9px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 5px;
+            border-radius: 2px;
+        }
+
+        .button3:hover, .button3.active {
+            background-color: white;
+            color: #FFB524;
+        }
+
+        
+
+        .footer {
+            background-color: #ffffff;
+            color: white;
+            display: flex;
+            justify-content: space-between; /* Space between logos and text */
+            align-items: center;
+            padding: 20px;
+            width: 100%;
+        }
+        
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 5px; /* Space between logos */
+            flex-wrap: wrap; /* Ensures responsiveness */
+        }
+        
+        .footer-left img {
+            height: 60px; /* Increased size */
+            width: auto; /* Maintain aspect ratio */
+            margin: 5px;
+        }
+        
+        .footer-right {
+            display: flex;
+            flex-direction: column; /* Stack social links above text */
+            align-items: flex-end; /* Align to the right */
+            text-align: right;
+            color: black;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 5px; /* Space between social icons */
+            margin-bottom: 5px; /* Adds space between icons & text */
+        }
+        
+        .social-links a {
+            display: inline-block;
+        }
+        
+        .social-links img {
+            height: 40px; /* Adjusted for social media icons */
+            width: auto;
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .social-links img:hover {
+            transform: scale(1.2);
+        }
+        
+        
+        
+        
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .Header {
+                flex-direction: column;
+                align-items: center;
+                padding: 10px;
+            }
+
+            .Header .logo-heading {
+                text-align: center;
+                flex-direction: row;
+            }
+
+            .Header nav {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            .button3 {
+                margin: 5px;
+            }
+
+            .image-sections {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .image-section {
+                width: 80%;
+                height: 200px;
+                margin-bottom: 20px;
+            }
+        }
+
+        .Header .logo-heading img {
+            height: 80px;
+            width: auto;
+        }
+
+        .robothon-section {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .robothon-title {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(to right, blue, #ffc107);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .robothon-text {
+            font-size: 1rem;
+            color: black !important;
+            background: none !important;
+            -webkit-background-clip: unset !important;
+            -webkit-text-fill-color: black !important;
+            max-width: 80%;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 1.5;
+            padding: 40px;
+            font-weight: 400 !important;
+        }
+        
+        /* Category Area */
+        .category-area {
+            background-color: #c1e8fb; /* Background color similar to the header */
+            padding: 50px;
+            text-align: center; /* Center the content */
+            color: white;
+            border-radius: 15px; /* Optional: rounded corners */
+            margin: 10px 0;
+        }
+        
+        .category-heading {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap; /* Allows wrapping if needed */
+            justify-content: center; /* Ensures categories stay centered */
+            gap: 50px; /* Allows wrapping for smaller screens */
+        }
+        
+        .category {
+            flex: 1 1 calc(25% - 20px); /* Ensures exactly 4 categories per row */
+            max-width: 250px; /* Prevents categories from stretching too much */
+            text-align: center;
+        }
+        
+        .category h3 {
+           font-size: 1.4rem; /* Reduce font size */
+                white-space: nowrap; /* Prevents text from wrapping */
+                overflow: visible; /* Ensures full text is shown */
+                text-overflow: unset; /* Removes "..." */
+        }
+        
+        .category-button {
+            background-color: #FFB524;
+            border: 2px solid #FFF;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 5px;
+            border-radius: 2px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .category .category-button {
+            display: block; /* Makes each button take the full width */
+            width: 50%; /* Reduces width by half */
+            font-size: 0.8rem; /* Reduces text size */
+            padding: 5px 10px; /* Adjusts padding for smaller size */
+            text-align: center; /* Centers the text */
+            margin: 5px auto; /* Centers buttons and adds spacing */
+        }
+        
+        .category-button:hover {
+            background-color: white;
+            color: #FFB524;
+        }
+
+        .robothon-section {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .robothon-title {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(to right, blue, #ffc107);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .robothon-text {
+            font-size: 1rem;
+            color: black !important;
+            background: none !important;
+            -webkit-background-clip: unset !important;
+            -webkit-text-fill-color: black !important;
+            max-width: 80%;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 1.5;
+            padding: 40px;
+            font-weight: 400 !important;
+        }
+
+        /* Adjusting the text area's position */
+        .text-area {
+            margin-left: 30px; /* Moves content slightly towards the center */
+        }
+        
+        /* Styling the heading */
+        h2 {
+            font-weight: 800; /* Bold but not too heavy */
+            font-size: 2.2rem; /* Balanced size */
+            color: white; /* Keep it white */
+            text-align: left; /* Ensures left alignment */
+            margin-bottom: 20px; /* Adds space below the heading */
+            text-shadow: 
+                -1px -1px 0 #ff9b00,  
+                 1px -1px 0 #ff9b00,  
+                -1px  1px 0 #ff9b00,  
+                 1px  1px 0 #ff9b00;
+        }
+        h3 {
+            font-weight: 800; /* Bold but not too heavy */
+            font-size: 2.2rem; /* Balanced size */
+            color: #1c97d4; /* Keep it white */
+            text-align: center; /* Ensures left alignment */
+            margin-bottom: 20px; /* Adds space below the heading */
+            text-shadow: 
+                -0.7px -0.7px 0 white,  
+                 0.7px -0.7px 0 white,  
+                -0.7px  0.7px 0 white,  
+                 0.7px  0.7px 0 white;
+        }
+        /* Styling the list */
+        ul {
+            list-style-type: disc;
+            list-style-position: inside;
+            padding-left: 10px; /* Adjusts list indentation */
+        }
+        
+        ul li {
+            font-size: 1.3rem; /* Slightly larger font for readability */
+            font-weight: 500; /* Medium weight */
+            margin-bottom: 12px; /* Space between list items */
+            transition: transform 0.3s ease, color 0.3s ease; /* Smooth hover effect */
+        }
+        
+        /* Bullet customization */
+        ul li::marker {
+            color: #FFB524; /* Yellow bullets */
+            font-size: 1.4rem; /* Slightly larger bullets */
+        }
+        
+        /* Hover effect for list items */
+        ul li:hover {
+            transform: translateX(8px); /* Subtle slide effect */
+            color: #FFB524; /* Turns text yellow on hover */
+        }
+        .container-fluid.py-5 {
+            margin-top: 80px; /* Adjust according to your navbar height */
+        }
+        .mb-4{
+            padding-top: 40px;
+            color:  #1c97d4;
+            text-shadow: none;
+        }
+        
+
+
+    </style>
+</head>
+<body>
+    <div class="container-fluid p-0">
+        <header class="Header">
+            <div class="logo-heading">
+                <img src="{% static 'myapp/heading1.png' %}" alt="Robothon Logo">
+            </div>
+            <nav>
+                <a href="{% url 'home' %}">
+                    <button class="button3 {% if request.path == '/' %}active{% endif %}">HOME</button>
+                </a>
+                <a href="{% url 'competitions' %}">
+                    <button class="button3 {% if request.path == '/competitions/' %}active{% endif %}">COMPETITIONS</button>
+                </a>
+                <a href="{% url 'aboutus' %}">
+                    <button class="button3 {% if request.path == '/aboutus/' %}active{% endif %}">REGISTER</button>
+                </a>
+            </nav>
+        </header>
+    </div>
+
+    <div class="container-fluid py-5" style="background-color:rgb(255, 255, 255); color: white;">
+        <div class="row align-items-center">
+            <!-- Left Side: Text Content -->
+            <div class="col-md-6 text-center text-md-left px-5">
+                <h2 class="mb-4">Welcome to Robothon 2.0 – The Ultimate Robotics Challenge!</h2>
+                <ul style="list-style-type: disc; color:rgb(0, 0, 0); font-size: 1.2rem;">
+                    <li>Get ready for Robothon 2.0, Align STEM Club’s premier robotics competition, 
+                        designed to train and challenge young innovators! With free weekend training (Saturdays & Sundays),
+                        students can sharpen their skills before stepping into the competition. It’s a hands-on adventure in robotics, creativity, and problem-solving!</li>
+                    <li>🤖 LEGO Robotics (Ages 5-12)</li>
+                    <li>⚡ Arduino Robotics (Ages 9-16)</li>
+                    <li>🚀 Open Robotics (No Limits!)</li>
+                    <li>✈️ Drone Challenge</li>
+                </ul>
+            </div>
+            
+            <!-- Right Side: Video -->
+            <div class="col-md-6 text-center">
+                <img src="{% static 'myapp/category post.jpg' %}" alt="Robothon 2.0" width="80%" style="border-radius: 20px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+            </div>
+        </div>
+    </div>
+    
+    <div class="category-area">
+        <h2 class="category-heading">CATEGORIES</h2>
+    
+        <button class="category-button">General Rules</button>
+
+
+        <h2 class="category-heading">LEGO ROBOTICS</h2>
+    
+        <div class="category-buttons">
+            <div class="category">
+                <h3>Robo-Builder</h3>
+                <button class="category-button">Rules</button>
+                <button class="category-button">Game Field</button>
+                <button class="category-button">Building Instruction</button>
+            </div>
+            <div class="category">
+                <h3>Balloon-Blaster</h3>
+                <button class="category-button">Rules</button>
+                <button class="category-button">Game Field</button>
+                <button class="category-button">Building Instruction</button>
+            </div>
+            <div class="category">
+                <h3>Robomission-Maze</h3>
+                <button class="category-button">Rules</button>
+                <button class="category-button">Game Field</button>
+                <button class="category-button">Building Instruction</button>
+            </div>
+        </div>
+
+        <h2 class="category-heading">ARDUINO ROBOTICS</h2>
+    
+        <div class="category-buttons">
+            <div class="category">
+                <h3>Robo-Kickoff</h3>
+                <button class="category-button">Rules</button>
+                <button class="category-button">Game Field</button>
+                <button class="category-button">Building Instruction</button>
+            </div>
+            <div class="category">
+                <h3>Line-Tracking-Robots</h3>
+                <button class="category-button">Rules</button>
+                <button class="category-button">Game Field</button>
+                <button class="category-button">Building Instruction</button>
+            </div>
+        </div>
+
+        <h2 class="category-heading">OPEN ROBOTICS</h2>
+    
+        <div class="category-buttons">
+            <div class="category">
+                <h3>Humanoid-Robotics</h3>
+                <button class="category-button">Rules</button>
+                <button class="category-button">Game Field</button>
+                <button class="category-button">Building Instruction</button>
+            </div>
+            <div class="category">
+                <h3>Hydraulic-Powered-Robotics</h3>
+                <button class="category-button">Rules</button>
+                <button class="category-button">Game Field</button>
+                <button class="category-button">Building Instruction</button>
+            </div>
+            <div class="category">
+                <h3>Battle-Of-Robot</h3>
+                <button class="category-button">Rules</button>
+                <button class="category-button">Game Field</button>
+                <button class="category-button">Building Instruction</button>
+            </div>
+            <div class="category">
+                <h3>Ring-Master</h3>
+                <button class="category-button">Rules</button>
+                <button class="category-button">Game Field</button>
+                <button class="category-button">Building Instruction</button>
+            </div>
+        </div>
+
+        <h2 class="category-heading">DRONE WAR</h2>
+    
+        <div class="category-buttons">
+            <div class="category">
+                <h3>SKY-WAR</h3>
+                <button class="category-button">Rules</button>
+                <button class="category-button">Game Field</button>
+                <button class="category-button">Building Instruction</button>
+            </div>
+        </div>
+
+    </div>
+    
+
+    
+    <footer class="footer">
+        <div class="footer-left">
+            <img src="{% static 'myapp/logooo.png' %}" alt="Logo 1">
+            <img src="{% static 'myapp/Robothon Logo.png' %}" alt="Logo 2">
+            <img src="{% static 'myapp/elixir.jpg' %}" alt="Logo 3">
+            <img src="{% static 'myapp/stemorg.jpeg' %}" alt="Logo 4">
+            <img src="{% static 'myapp/lego.jpeg' %}" alt="Logo 5">
+            <img src="{% static 'myapp/tinkercad.jpeg' %}" alt="Logo 7">
+            <img src="{% static 'myapp/mblock.jpeg' %}" alt="Logo 6">
+            <img src="{% static 'myapp/python-logo.png' %}" alt="Logo 6">
+            <img src="{% static 'myapp/edison-logo.jpg' %}" alt="Logo 6">
+            <img src="{% static 'myapp/Arduin-_logo.png' %}" alt="Logo 6">
+        </div>
+    
+        <div class="footer-right">
+            <div class="social-links">
+                <a href="https://www.facebook.com/alignstemclub/"><img src="{% static 'myapp/icons8-facebook-48.png' %}" alt="Facebook"></a>
+                <a href="https://www.instagram.com/alignstem.club/"><img src="{% static 'myapp/icons8-instagram-48.png' %}" alt="Instagram"></a>
+                <a href="https://pk.linkedin.com/company/alignstemclub"><img src="{% static 'myapp/icons8-linkedin-48.png' %}" alt="LinkedIn"></a>
+            </div>
+            <p>© 2025 Robothon 2.0 | All Rights Reserved</p>
+        </div>
+    </footer>
+    
+    
+    
+
+    <script>
+        // Slideshow Logic
+        let currentSlide = 1;
+        const totalSlides = 3;
+
+        function showNextSlide() {
+            const contentDiv = document.querySelector('.content');
+            contentDiv.classList.remove(`active-bg-${currentSlide}`);
+            currentSlide = (currentSlide % totalSlides) + 1;
+            contentDiv.classList.add(`active-bg-${currentSlide}`);
+        }
+
+        setInterval(showNextSlide, 5000);
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let slides = document.querySelectorAll(".slide");
+            let index = 0;
+
+            setInterval(() => {
+                slides.forEach((img, i) => {
+                    img.style.opacity = (i === index) ? "1" : "0";
+                });
+                index = (index + 1) % slides.length; // Move to next slide
+            }, 3000); // Change every 3 seconds
+        });
+    </script>
+        
+</body>
+</html>

@@ -1,0 +1,455 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Robothon 2.0</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* General Resets */
+        body, .container-fluid {
+            margin: 0;
+            padding: 0;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        .Header {
+            background-color: #c1e8fb;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 9999;
+            transition: background-color 0.3s ease, opacity 0.3s ease;
+            border-bottom: 3px solid #FFB524; /* Solid yellow bottom border */
+        }
+
+        
+
+        .Header .logo-heading {
+            display: flex;
+            align-items: center;
+        }
+
+        .Header img {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        #heading {
+            color: white;
+            font-size: 2rem;
+            margin: 0;
+            text-shadow: 0 0 3px #000, 0 0 5px #000, 2px 2px 4px #000;
+        }
+
+        .button3 {
+            background-color: #FFB524;
+            border: 2px solid #FFF;
+            color: white;
+            padding: 5px 9px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 5px;
+            border-radius: 2px;
+        }
+
+        .button3:hover, .button3.active {
+            background-color: white;
+            color: #FFB524;
+        }
+
+        
+
+        .footer {
+            background-color: #ffffff;
+            color: white;
+            display: flex;
+            justify-content: space-between; /* Space between logos and text */
+            align-items: center;
+            padding: 20px;
+            width: 100%;
+        }
+        
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 5px; /* Space between logos */
+            flex-wrap: wrap; /* Ensures responsiveness */
+        }
+        
+        .footer-left img {
+            height: 60px; /* Increased size */
+            width: auto; /* Maintain aspect ratio */
+            margin: 5px;
+        }
+        
+        .footer-right {
+            display: flex;
+            flex-direction: column; /* Stack social links above text */
+            align-items: flex-end; /* Align to the right */
+            text-align: right;
+            color: black;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 5px; /* Space between social icons */
+            margin-bottom: 5px; /* Adds space between icons & text */
+        }
+        
+        .social-links a {
+            display: inline-block;
+        }
+        
+        .social-links img {
+            height: 40px; /* Adjusted for social media icons */
+            width: auto;
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .social-links img:hover {
+            transform: scale(1.2);
+        }
+        
+        
+        
+        
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .Header {
+                flex-direction: column;
+                align-items: center;
+                padding: 10px;
+            }
+
+            .Header .logo-heading {
+                text-align: center;
+                flex-direction: row;
+            }
+
+            .Header nav {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            .button3 {
+                margin: 5px;
+            }
+
+            .image-sections {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .image-section {
+                width: 80%;
+                height: 200px;
+                margin-bottom: 20px;
+            }
+        }
+
+        .Header .logo-heading img {
+            height: 80px;
+            width: auto;
+        }
+
+        .robothon-section {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .robothon-title {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(to right, blue, #ffc107);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .robothon-text {
+            font-size: 1rem;
+            color: black !important;
+            background: none !important;
+            -webkit-background-clip: unset !important;
+            -webkit-text-fill-color: black !important;
+            max-width: 80%;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 1.5;
+            padding: 40px;
+            font-weight: 400 !important;
+        }
+
+        .robothon-section {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .robothon-title {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(to right, blue, #ffc107);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .robothon-text {
+            font-size: 1rem;
+            color: black !important;
+            background: none !important;
+            -webkit-background-clip: unset !important;
+            -webkit-text-fill-color: black !important;
+            max-width: 80%;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 1.5;
+            padding: 40px;
+            font-weight: 400 !important;
+        }
+
+        /* Adjusting the text area's position */
+        .text-area {
+            margin-left: 30px; /* Moves content slightly towards the center */
+        }
+        
+        /* Styling the heading */
+        h2 {
+            font-weight: 800; /* Bold but not too heavy */
+            font-size: 2.2rem; /* Balanced size */
+            color:  #ff9b00; /* Keep it white */
+            text-align: left; /* Ensures left alignment */
+            margin-bottom: 20px; /* Adds space below the heading */
+        }
+        h4 {
+            font-weight: 800; /* Bold but not too heavy */
+            font-size: 1.5rem; /* Balanced size */
+            color:  #1c97d4;; /* Keep it white */
+            text-align: center; /* Ensures left alignment */
+            margin-bottom: 10px; /* Adds space below the heading */
+            
+        }
+        h3 {
+            font-weight: 800; /* Bold but not too heavy */
+            font-size: 2.2rem; /* Balanced size */
+            color: white; /* Keep it white */
+            text-align: center; /* Ensures left alignment */
+            margin-bottom: 20px;
+
+        }
+        
+        .glass-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr; /* Left column smaller, right column bigger */
+            gap: 20px;
+            max-width: 80%;
+            margin: 50px auto;
+            margin-top: 150px;
+        }
+        
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Space between the three smaller divs */
+        }
+        
+        .right-column {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .glass-container {
+            background: rgba(193, 232, 251, 0.3); /* Glass effect */
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            color: black;
+            padding: 20px;
+        }
+        
+        /* Right column takes full height */
+        .right-column .glass-container {
+            height: 100%; /* Expands to match left column */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .glass-grid {
+                grid-template-columns: 1fr; /* Stack everything on small screens */
+            }
+        }
+        
+        
+        .robothon-right-button {
+            background-color: #FFB524;
+            border: 2px solid #FFF;
+            color: white;
+            padding: 5px 9px;
+            font-size: 0.8rem; /* Reduced font size */
+            cursor: pointer;
+            margin: 10px auto; /* Centered with margin */
+            border-radius: 12px; /* Rounded corners */
+            text-align: center;
+            display: block;
+            width: 50%; /* Half the original width */
+            height: 45px;
+        }
+
+        .robothon-right-button:hover,
+        .robothon-right-button.active {
+            background-color: white;
+            color: black;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div class="container-fluid p-0">
+        <header class="Header">
+            <div class="logo-heading">
+                <img src="{% static 'myapp/heading1.png' %}" alt="Robothon Logo">
+            </div>
+            <nav>
+                <a href="{% url 'home' %}">
+                    <button class="button3 {% if request.path == '/' %}active{% endif %}">HOME</button>
+                </a>
+                <a href="{% url 'competitions' %}">
+                    <button class="button3 {% if request.path == '/competitions/' %}active{% endif %}">COMPETITIONS</button>
+                </a>
+                <a href="{% url 'aboutus' %}">
+                    <button class="button3 {% if request.path == '/aboutus/' %}active{% endif %}">REGISTER</button>
+                </a>
+            </nav>
+        </header>
+    </div>
+
+    <div class="glass-grid">
+        <!-- Left Column with 3 Smaller Divs -->
+        <div class="left-column">
+            <div class="glass-container">
+                <h2>LEGO ROBOTICS</h2>
+                <p>Early Bird: 4,500</p>
+                <p>Normal Fee: 6,000</p>
+            </div>
+            <div class="glass-container">
+                <h2>ARDUINO ROBOTICS</h2>
+                <p>Early Bird: 3,500</p>
+                <p>Normal Fee: 5,000</p>
+            </div>
+            <div class="glass-container">
+                <h2>DRONE COMPETITION</h2>
+                <p>Early Bird: 4,500</p>
+                <p>Normal Fee: 6,000</p>
+            </div>
+        </div>
+    
+        <!-- Right Column with One Big Div -->
+        <div class="right-column">
+            <div class="glass-container">
+                <h2>OPEN ROBOTICS CATEGORY</h2>
+                <h4>Battle of Bots / Robo Sumo</h4>
+                <p>Early Bird: 3,500</p>
+                <p>Normal Fee: 5,500</p>
+    
+                <h4>Humanoid Robot Challenge</h4>
+                <p>Early Bird: 10,000</p>
+                <p>Normal Fee: 15,000</p>
+    
+                <h4>Hydraulic Powered Robotic Arm</h4>
+                <p>Fixed Fee: 3,000</p>
+        
+                
+                <a href="https://theelixirschool.com/coming-soon" class="robothon-right-button">Registration Form</a>
+
+
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    
+    <footer class="footer">
+        <div class="footer-left">
+            <img src="{% static 'myapp/logooo.png' %}" alt="Logo 1">
+            <img src="{% static 'myapp/Robothon Logo.png' %}" alt="Logo 2">
+            <img src="{% static 'myapp/elixir.jpg' %}" alt="Logo 3">
+            <img src="{% static 'myapp/stemorg.jpeg' %}" alt="Logo 4">
+            <img src="{% static 'myapp/lego.jpeg' %}" alt="Logo 5">
+            <img src="{% static 'myapp/tinkercad.jpeg' %}" alt="Logo 7">
+            <img src="{% static 'myapp/mblock.jpeg' %}" alt="Logo 6">
+            <img src="{% static 'myapp/python-logo.png' %}" alt="Logo 6">
+            <img src="{% static 'myapp/edison-logo.jpg' %}" alt="Logo 6">
+            <img src="{% static 'myapp/Arduin-_logo.png' %}" alt="Logo 6">
+        </div>
+    
+        <div class="footer-right">
+            <div class="social-links">
+                <a href="https://www.facebook.com/alignstemclub/"><img src="{% static 'myapp/icons8-facebook-48.png' %}" alt="Facebook"></a>
+                <a href="https://www.instagram.com/alignstem.club/"><img src="{% static 'myapp/icons8-instagram-48.png' %}" alt="Instagram"></a>
+                <a href="https://pk.linkedin.com/company/alignstemclub"><img src="{% static 'myapp/icons8-linkedin-48.png' %}" alt="LinkedIn"></a>
+            </div>
+            <p>© 2025 Robothon 2.0 | All Rights Reserved</p>
+        </div>
+    </footer>
+    
+    
+    
+
+    <script>
+        // Slideshow Logic
+        let currentSlide = 1;
+        const totalSlides = 3;
+
+        function showNextSlide() {
+            const contentDiv = document.querySelector('.content');
+            contentDiv.classList.remove(`active-bg-${currentSlide}`);
+            currentSlide = (currentSlide % totalSlides) + 1;
+            contentDiv.classList.add(`active-bg-${currentSlide}`);
+        }
+
+        setInterval(showNextSlide, 5000);
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let slides = document.querySelectorAll(".slide");
+            let index = 0;
+
+            setInterval(() => {
+                slides.forEach((img, i) => {
+                    img.style.opacity = (i === index) ? "1" : "0";
+                });
+                index = (index + 1) % slides.length; // Move to next slide
+            }, 3000); // Change every 3 seconds
+        });
+    </script>
+        
+</body>
+</html>

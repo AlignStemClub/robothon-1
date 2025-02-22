@@ -1,0 +1,307 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Robothon 2.0</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* General Resets */
+        body, .container-fluid {
+            margin: 0;
+            padding: 0;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        .Header {
+            background-color: #0d384d;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 9999;
+            transition: background-color 0.3s ease, opacity 0.3s ease;
+        }
+
+        .Header .logo-heading {
+            display: flex;
+            align-items: center;
+        }
+
+        .Header img {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        #heading {
+            color: white;
+            font-size: 2rem;
+            margin: 0;
+            text-shadow: 0 0 3px #000, 0 0 5px #000, 2px 2px 4px #000;
+        }
+
+        .button3 {
+            background-color: #FFB524;
+            border: 2px solid #FFF;
+            color: white;
+            padding: 5px 9px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 5px;
+            border-radius: 2px;
+        }
+
+        .button3:hover, .button3.active {
+            background-color: white;
+            color: #FFB524;
+        }
+
+        .video-container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #F4F4F4;
+            border-bottom: 3px solid transparent; /* Make the border transparent */
+            border-image: linear-gradient(to right, blue, yellow); /* Apply the gradient */
+            border-image-slice: 1;
+        }
+        
+        .video-container video {
+            width: 70%; /* Adjust size */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Image Sections */
+        .image-sections {
+            display: flex;
+            justify-content: space-around;
+            margin: 50px 0;
+            padding: 20px;
+            width: 100%;
+        }
+
+        .image-section {
+            width: 30%;
+            height: 300px;
+            background-color: #333;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #0d384d;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+        }
+
+        .footer img {
+            height: 30px;
+            margin: 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .Header {
+                flex-direction: column;
+                align-items: center;
+                padding: 10px;
+            }
+
+            .Header .logo-heading {
+                text-align: center;
+                flex-direction: row;
+            }
+
+            .Header nav {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap; /* Allow buttons to wrap */
+                width: 100%; /* Full width */
+                margin-top: 10px;
+            }
+
+            .button3 {
+                margin: 5px;
+            }
+
+            .image-sections {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .image-section {
+                width: 80%;
+                height: 200px;
+                margin-bottom: 20px;
+            }
+        }
+        .Header .logo-heading img {
+            height: 80px; /* Keep the adjusted size */
+            width: auto; /* Maintain aspect ratio */
+        
+        }
+        .robothon-section {
+            text-align: center; /* Center align the content */
+            padding: 40px;
+        }
+        
+        .robothon-title {
+            font-size: 3rem; /* Large text */
+            font-weight: bold; /* Bold text */
+            background: linear-gradient(to right, blue, yellow); /* Gradient color */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; /* Apply gradient to text */
+            display: block; /* Change from inline-block to block */
+            text-align: center; /* Center the text */
+            margin-bottom: 50px; /* Add space below */
+        }
+        
+        .robothon-text {
+            font-size: 1rem; /* Normal text size */
+            color: black !important; /* Ensures the text is black */
+            background: none !important; /* Removes any inherited gradient */
+            -webkit-background-clip: unset !important; /* Resets any clipping */
+            -webkit-text-fill-color: black !important; /* Forces solid black text */
+            max-width: 80%; /* Restrict width for readability */
+            margin: 0 auto; /* Center align */
+            text-align: center; /* Ensure paragraph text is centered */
+            line-height: 1.5; /* Improve readability */
+            padding: 40px;
+            font-weight: 400 !important; /* Forces normal font weight */
+        }
+        
+        
+        
+        
+        
+        
+        
+    </style>
+</head>
+<body>
+    <div class="container-fluid p-0">
+        <header class="Header">
+            <div class="logo-heading">
+                <img src="{% static 'myapp/heading.png' %}" alt="Robothon Logo">
+            </div>
+            <nav>
+                <a href="{% url 'home' %}">
+                    <button class="button3 {% if request.path == '/' %}active{% endif %}">HOME</button>
+                </a>
+                <a href="{% url 'competitions' %}">
+                    <button class="button3 {% if request.path == '/competitions/' %}active{% endif %}">COMPETITIONS</button>
+                </a>
+                <a href="{% url 'aboutus' %}">
+                    <button class="button3 {% if request.path == '/aboutus/' %}active{% endif %}">REGISTER</button>
+                </a>
+            </nav>
+        </header>
+    </div>
+    
+    <div class="video-container">
+        <video autoplay loop muted>
+            <source src="{% static 'myapp/LOGO VID.mp4' %}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const video = document.querySelector(".video-container video");
+    
+            video.addEventListener("loadedmetadata", function () {
+                if (video.currentTime < 1) {
+                    video.currentTime = 1; // Skip the first 1 second
+                }
+            });
+        });
+    </script>
+    <div class="robothon-section">
+        <h1 class="robothon-title">
+            <span>A Global Robotics Challenge</span> <br>
+            <span>Driving Innovation in STEM & Sustainability in </span> <br>
+            <span>Pakistan</span>
+        <p class="robothon-text">
+            Robothon 2.0 envisions a future where STEM education, Robotics, and AI are accessible to all, fostering innovation and problem-solving among young minds in Pakistan. 
+            As a free training-based competition, we strive to bridge the resource gap by providing hands-on learning opportunities to underprivileged institutions. Through this platform, 
+            students tackle real-world challenges and develop skills that prepare them for a tech-driven future. This year, we align with UN Sustainable Development Goal 14: Life Below Water, 
+            inspiring solutions for marine sustainability and environmental conservation.
+        </p>
+    </div>
+    
+    <div class="container-fluid py-5" style="background-color: #0d384d; color: white;">
+        <div class="row align-items-center">
+            <!-- Left Side: Text Content -->
+            <div class="col-md-6 text-center text-md-left px-5">
+                <h2 class="mb-4">Robothon 1.0</h2>
+                <ul style="list-style-type: disc; color: #FFB524; font-size: 1.2rem;">
+                    <li>Innovative Robotics Challenges</li>
+                    <li>Hands-on Learning Experience</li>
+                    <li>Networking with Experts</li>
+                    <li>Exciting Prizes and Recognition</li>
+                </ul>
+            </div>
+            
+            <!-- Right Side: Video -->
+            <div class="col-md-6 text-center">
+                <video width="80%" controls>
+                    <source src="{% static 'myapp/robothon 1.0.mp4' %}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="image-sections">
+        <div class="image-section" style="background-image: url('{% static "myapp/p7.jpg" %}');"></div>
+        <div class="image-section" style="background-image: url('{% static "myapp/p5.jpg" %}');"></div>
+        <div class="image-section" style="background-image: url('{% static "myapp/p6.jpg" %}');"></div>
+    </div>
+
+    <footer class="footer">
+        <p>Follow us on:</p>
+        <a href="https://www.facebook.com/alignstemclub/" target="_blank">
+            <img src="{% static 'footer/facebook.png' %}" alt="Facebook">
+        </a>
+        <a href="https://www.instagram.com/alignstem.club/" target="_blank">
+            <img src="{% static 'footer/instagram.png' %}" alt="Instagram">
+        </a>
+        <a href="https://pk.linkedin.com/company/alignstemclub" target="_blank">
+            <img src="{% static 'footer/linkedin.jpg' %}" alt="LinkedIn">
+        </a>
+        <p>&copy; 2024 Robothon 2.0 | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // Slideshow Logic
+        let currentSlide = 1;
+        const totalSlides = 3;
+
+        function showNextSlide() {
+            const contentDiv = document.querySelector('.content');
+            contentDiv.classList.remove(`active-bg-${currentSlide}`);
+            currentSlide = (currentSlide % totalSlides) + 1;
+            contentDiv.classList.add(`active-bg-${currentSlide}`);
+        }
+
+        setInterval(showNextSlide, 5000);
+    </script>
+</body>
+</html>
